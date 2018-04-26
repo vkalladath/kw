@@ -1,0 +1,19 @@
+Overview of the Sample Application
+==================================
+
+This package contains two application components which we will use throughout the course to demonstrate features of Kubernetes:
+
+1. gowebapp
+
+This directory contains a simple Go-based note-taking web application. It includes a home page, registration page, login page, about page, and note management page. 
+
+Configuration for this application is stored in code/config/config.json. This file is used to configure the backing data store for the application, which in this course is MySQL. 
+
+Later in the course, we will externalize this configuration in order to take advantage of Kubernetes Secrets and ConfigMaps. This will include some minor modifications to the Go source code. Go programming experience is not required to complete the exercises.
+
+For more details about the internal design and implementation of the Go web application, see code/README.md.
+
+2. gowebapp-mysql
+
+This directory contains the schema file used to setup the backing MySQL database for the Go web application.
+

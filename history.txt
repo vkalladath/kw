@@ -1,0 +1,78 @@
+    1  wget http://35.194.26.34:9000/
+    2  kubectl describe secret mysql
+    3  kubectl get secret mysql
+    4  kubectl get secret mysql -o wide
+    5  kubectl get secret mysql -o yaml
+    6  vi gowebapp/gowebapp-mysql/gowebapp-mysql-service.yaml 
+    7  vi gowebapp/gowebapp/gowebapp-service.yaml 
+    8  vi gowebapp/gowebapp/gowebapp-deployment.yaml 
+    9  cd gowebapp/gowebapp
+   10  ls
+   11  kubectl apply -f gowebapp-deployment.yaml --record
+   12  vi gowebapp/gowebapp/gowebapp-deployment.yaml 
+   13  vi gowebapp-deployment.yaml 
+   14  kubectl apply -f gowebapp-deployment.yaml --record
+   15  kubectl rollout status deploy gowebapp
+   16  kubectl rollout history deploy gowebapp
+   17  kubectl rollout history deploy gowebapp --revision=2
+   18  kubectl get svc gowebapp -o wide
+   19  cd $HOME/gowebapp/gowebapp-mysql
+   20  vi pvc.yaml
+   21  kubectl apply -f pvc.yaml --record
+   22  kubectl get pvc mysqlpvc
+   23  kubectl describe pv
+   24  gcloud compute disks describe <PDName>
+   25  gcloud compute disks describe gke-how-97695fa9-dynam-pvc-529fd1f5-48e6-11e8-9844-42010a800fdd
+   26  cd gke-how-97695fa9-dynam-pvc-529fd1f5-48e6-11e8-9844-42010a800fdd
+   27  cd  $HOME/gowebapp/gowebapp-mysql/
+   28  vi gowebapp-mysql-deployment.yaml
+   29  vi gowebapp-mysql-deployment.yamlcat pvc.yaml 
+   30  cat pvc.yaml 
+   31  vi gowebapp-mysql-deployment.yamlcat 
+   32  vi gowebapp-mysql-deployment.yaml
+   33  kubectl apply -f gowebapp-mysql-deployment.yaml --record
+   34  vi gowebapp-mysql-deployment.yaml
+   35  kubectl apply -f gowebapp-mysql-deployment.yaml --record
+   36  cat gowebapp-mysql-deployment.yaml
+   37  kubectl apply -f gowebapp-mysql-deployment.yaml --record
+   38  vi test.yaml
+   39  kubectl apply -f test.yaml --record
+   40  vi test.yaml
+   41  kubectl apply -f test.yaml --record
+   42  vi test.yaml
+   43  kubectl apply -f test.yaml --record
+   44  vi test.yaml
+   45  kubectl apply -f test.yaml --record
+   46  vi test1.yaml
+   47  kubectl apply -f test1.yaml --record
+   48  vi test1.yaml
+   49  kubectl apply -f test1.yaml --record
+   50  kubectl rollout status deploy gowebapp-mysql
+   51  history
+   52  kubectl rollout history deploy gowebapp
+   53  kubectl rollout history deploy gowebapp-mysql
+   54  POD=$(kubectl get pod -l 'run=gowebapp-mysql' | tail -1 | awk '{print $1}')
+   55  echo $(kubectl get pod $POD -o jsonpath="{.status.podIP}")
+   56  kubectl delete pod $POD
+   57  kubectl get deploy gowebapp-mysql -w
+   58  POD=$(kubectl get pod -l 'run=gowebapp-mysql' | tail -1 | awk '{print $1}')
+   59  echo $(kubectl get pod $POD -o jsonpath="{.status.podIP}")
+   60  kubectl delete pod $POD
+   61  kubectl get deploy gowebapp-mysql -w
+   62  kubectl rollout status deploy gowebapp-mysql
+   63  kubectl rollout history deploy gowebapp-mysql
+   64  POD=$(kubectl get pod -l 'run=gowebapp-mysql' | tail -1 | awk '{print $1}')
+   65  echo $(kubectl get pod $POD -o jsonpath="{.status.podIP}")
+   66  kubectl delete pod $POD
+   67  git clone https://github.com/vkalladath/kw.git
+   68  ls
+   69  rm -rf kw
+   70  cd ~
+   71  ls
+   72  git clone https://github.com/vkalladath/kw.git
+   73  ls
+   74  cp * kw
+   75  cp -r gowebapp kw
+   76  cd kw
+   77  ls
+   78  history>history.txt

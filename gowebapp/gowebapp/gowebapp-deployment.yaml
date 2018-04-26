@@ -1,0 +1,38 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata: 
+  name: gowebapp
+  labels:
+     run: gowebapp
+     tier: frontend
+
+spec:
+   replicas: 2
+   template:
+     metadata:
+       labels:
+         run: gowebapp
+         tier: frontend
+     spec:
+       containers:
+       - env:
+         - name: MYSQL_ROOT_PASSWORD
+           valueFrom:
+             secretKeyRef:
+               name: mysql
+               key: password
+         #TODO: Replace $PROJECT_ID with value from `echo $PROJECT_ID`
+         image: gcr.io/qwiklabs-gcp-17d9ccc736921024/gowebapp:v1
+         name: gowebapp
+         ports:
+           - containerPort: 80
+         volumeMounts:
+         - name: config-volume
+           mountPath: /go/src/gowebapp/config
+       volumes:
+       - name: config-volume
+         configMap:
+           name: gowebapp
+           items:
+           - key: webapp-config-json
+             path: config.json

@@ -1,0 +1,42 @@
+--- 
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata: 
+  labels: 
+    run: gowebapp-mysql
+    tier: backend
+  name: gowebapp-mysql
+spec: 
+  replicas: 1
+  strategy: 
+    type: Recreate
+  template: 
+    metadata: 
+      labels: 
+        run: gowebapp-mysql
+        tier: backend
+    spec: 
+      containers: 
+        - 
+          env: 
+            - 
+              name: MYSQL_ROOT_PASSWORD
+              valueFrom: 
+                secretKeyRef: 
+                  key: password
+                  name: mysql
+          image: "gcr.io/qwiklabs-gcp-17d9ccc736921024/gowebapp-mysql:v1"
+          name: gowebapp-mysql
+          ports: 
+            - 
+              containerPort: 3306
+          volumeMounts: 
+            - 
+              mountPath: /var/lib/mysql
+              name: mysql
+       volumes: 
+         - 
+           name: mysql
+           persistentVolumeClaim: 
+           claimName: mysqlpvc
+
